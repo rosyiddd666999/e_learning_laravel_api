@@ -17,6 +17,9 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->integer('total_points')->default(0);
+            $table->integer('current_streak')->default(0);
+            $table->date('last_activity_date')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
