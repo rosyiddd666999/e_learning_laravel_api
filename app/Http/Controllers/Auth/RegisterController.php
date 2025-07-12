@@ -17,9 +17,6 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:8|confirmed',
-            'total_points' => 0,
-            'correct_streak' => 0,
-            'last_activity_date' => Carbon::now(),
         ]);
 
         if ($validator->fails()) {
@@ -30,6 +27,8 @@ class RegisterController extends Controller
             'name' => $request->name,
             'email' => $request->email,
             'password' => Hash::make($request->password),
+            'total_points' => 0,
+            'current_streak' => 0,
         ]);
 
         $token = $user->createToken('auth_token')->plainTextToken;
