@@ -10,20 +10,29 @@ use Illuminate\Support\Str;
 
 class UpdateCategoryController extends Controller
 {
-    public function updateCategory(Request $request) {
+    public function updateCategory(Request $request, $id)
+    {
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'description' => 'required|string|max:255',
             'color' => 'required|string|max:255',
             'icon' => 'required|string|max:255',
-            'is_active' => 'boolean|default:true',
+            'is_active' => 'boolean',
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
 
-        $category = Category::find($request->id);
+        $category = Category::find($id);
+
+        if (!$category) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Category not found',
+            ], 404);
+        }
+
         $category->name = $request->name;
         $category->slug = Str::slug($request->name);
         $category->description = $request->description;
@@ -35,7 +44,7 @@ class UpdateCategoryController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Category updated successfully',
-            'data' => $request->user(),
+            'data' => $category,
         ]);
     }
 }

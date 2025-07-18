@@ -15,25 +15,27 @@ class CreateFlashcardController extends Controller
             'answer' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'difficulty' => 'required|string|in:easy,medium,hard',
-            'is_active' => 'boolean|default:true',
+            'is_active' => 'boolean',
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
 
+        $is_active = $request->has('is_active') ? $request->is_active : true;
+
         $flashcard = Flashcard::create([
             'question' => $request->question,
             'answer' => $request->answer,
             'category_id' => $request->category_id,
             'difficulty' => $request->difficulty,
-            'is_active' => $request->is_active,
+            'is_active' => $is_active,
         ]);
 
         return response()->json([
             'status' => 'success',
             'message' => 'Flashcard created successfully',
-            'data' => $request->user(),
+            'data' => $flashcard,
         ]);
     }
 }
