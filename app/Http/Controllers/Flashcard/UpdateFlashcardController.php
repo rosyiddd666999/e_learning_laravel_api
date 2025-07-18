@@ -9,21 +9,29 @@ use Illuminate\Support\Facades\Validator;
 
 class UpdateFlashcardController extends Controller
 {
-    public function updateFlashcard(Request $request)
+    public function updateFlashcard(Request $request, $id)
     {
         $validator = Validator::make($request->all(), [
             'question' => 'required|string|max:255',
             'answer' => 'required|string|max:255',
             'category_id' => 'required|exists:categories,id',
             'difficulty' => 'required|in:easy,medium,hard',
-            'is_active' => 'boolean|default:true',
+            'is_active' => 'boolean',
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
 
-        $flashcard = Flashcard::find($request->id);
+        $flashcard = Flashcard::find($id);
+
+        if (!$flashcard) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Flashcard not found',
+            ], 404);
+        }
+
         $flashcard->question = $request->question;
         $flashcard->answer = $request->answer;
         $flashcard->category_id = $request->category_id;
@@ -34,7 +42,7 @@ class UpdateFlashcardController extends Controller
         return response()->json([
             'status' => 'success',
             'message' => 'Flashcard updated successfully',
-            'data' => $request->user(),
+            'data' => $flashcard,
         ]);
     }
 }

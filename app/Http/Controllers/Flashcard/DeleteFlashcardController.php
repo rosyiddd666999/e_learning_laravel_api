@@ -8,13 +8,13 @@ use Illuminate\Http\Request;
 
 class DeleteFlashcardController extends Controller
 {
-    public function deleteFlashcard(Request $request) {
-        $flashcard = Flashcard::find($request->id);
+    public function deleteFlashcard(Request $request, $id) {
+        $flashcard = Flashcard::find($id);
         $flashcard->delete();
         return response()->json([
             'status' => 'success',
             'message' => 'Flashcard deleted successfully',
-            'data' => $request->user(),
+            'data' => $flashcard,
         ]);
     }
 }

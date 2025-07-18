@@ -16,12 +16,14 @@ class CreateCategoryController extends Controller
             'description' => 'required|string|max:255',
             'color' => 'required|string|max:255',
             'icon' => 'required|string|max:255',
-            'is_active' => 'boolean|default:true',
+            'is_active' => 'boolean',
         ]);
 
         if ($validator->fails()) {
             return response()->json($validator->errors(), 422);
         }
+
+        $is_active = $request->has('is_active') ? $request->is_active : true;
 
         $category = Category::create([
             'name' => $request->name,
@@ -29,7 +31,7 @@ class CreateCategoryController extends Controller
             'description' => $request->description,
             'color' => $request->color,
             'icon' => $request->icon,
-            'is_active' => $request->is_active,
+            'is_active' => $is_active,
         ]);
         
         return response()->json([
