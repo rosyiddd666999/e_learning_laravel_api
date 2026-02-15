@@ -1,61 +1,456 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# E-Learning Laravel API
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+API RESTful untuk platform e-learning dengan sistem flashcard dan manajemen kategori, dibangun menggunakan Laravel dan Sanctum untuk autentikasi.
 
-## About Laravel
+## 📋 Daftar Isi
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- [Fitur](#fitur)
+- [Teknologi](#teknologi)
+- [Prasyarat](#prasyarat)
+- [Instalasi](#instalasi)
+- [Konfigurasi](#konfigurasi)
+- [Menjalankan Aplikasi](#menjalankan-aplikasi)
+- [API Documentation](#api-documentation)
+- [Testing](#testing)
+- [Kontribusi](#kontribusi)
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## ✨ Fitur
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+### Autentikasi & Manajemen User
+- ✅ Register user baru
+- ✅ Login dengan email & password
+- ✅ Logout
+- ✅ Forgot password
+- ✅ Reset password dengan token
+- ✅ Get user profile
 
-## Learning Laravel
+### Manajemen Kategori
+- ✅ CRUD kategori pembelajaran
+- ✅ List semua kategori (public)
+- ✅ Detail kategori
+- ✅ Tracking progress user per kategori
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+### Sistem Flashcard
+- ✅ CRUD flashcard
+- ✅ Get flashcard berdasarkan kategori
+- ✅ Random flashcard untuk belajar
+- ✅ Submit attempt/jawaban flashcard
+- ✅ History attempt user per flashcard
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+## 🚀 Teknologi
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+![Laravel](https://img.shields.io/badge/Laravel-10.x-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![PHP](https://img.shields.io/badge/PHP-8.1+-777BB4?style=for-the-badge&logo=php&logoColor=white)
+![MySQL](https://img.shields.io/badge/MySQL-5.7+-4479A1?style=for-the-badge&logo=mysql&logoColor=white)
+![Sanctum](https://img.shields.io/badge/Sanctum-Auth-FF2D20?style=for-the-badge&logo=laravel&logoColor=white)
+![Composer](https://img.shields.io/badge/Composer-885630?style=for-the-badge&logo=composer&logoColor=white)
 
-## Laravel Sponsors
+## 📦 Prasyarat
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+Pastikan sistem Anda sudah terinstall:
 
-### Premium Partners
+- PHP >= 8.1
+- Composer
+- MySQL >= 5.7 atau MariaDB
+- Git
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+## 🔧 Instalasi
 
-## Contributing
+### 1. Clone Repository
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+```bash
+git clone https://github.com/rosyiddd666999/e_learning_laravel_api.git
+cd e_learning_laravel_api
+```
 
-## Code of Conduct
+### 2. Install Dependencies
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+composer install
+```
 
-## Security Vulnerabilities
+### 3. Setup Environment
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+cp .env.example .env
+```
 
-## License
+### 4. Generate Application Key
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+```bash
+php artisan key:generate
+```
+
+## ⚙️ Konfigurasi
+
+### Database Configuration
+
+Edit file `.env` dan sesuaikan konfigurasi database:
+
+```env
+DB_CONNECTION=mysql
+DB_HOST=127.0.0.1
+DB_PORT=3306
+DB_DATABASE=e_learning_db
+DB_USERNAME=root
+DB_PASSWORD=your_password
+```
+
+### Mail Configuration (untuk Reset Password)
+
+```env
+MAIL_MAILER=smtp
+MAIL_HOST=smtp.mailtrap.io
+MAIL_PORT=2525
+MAIL_USERNAME=your_username
+MAIL_PASSWORD=your_password
+MAIL_ENCRYPTION=tls
+MAIL_FROM_ADDRESS=noreply@elearning.com
+MAIL_FROM_NAME="${APP_NAME}"
+```
+
+### Sanctum Configuration
+
+```env
+SANCTUM_STATEFUL_DOMAINS=localhost,127.0.0.1
+SESSION_DRIVER=cookie
+```
+
+### Jalankan Migration & Seeder
+
+```bash
+php artisan migrate
+php artisan db:seed  # (optional) jika ada seeder
+```
+
+## 🏃 Menjalankan Aplikasi
+
+### Development Server
+
+```bash
+php artisan serve
+```
+
+API akan berjalan di: `http://127.0.0.1:8000`
+
+### Queue Worker (jika menggunakan jobs)
+
+```bash
+php artisan queue:work
+```
+
+## 📚 API Documentation
+
+Base URL: `http://127.0.0.1:8000/api`
+
+### Authentication Endpoints
+
+#### Register
+```http
+POST /register
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123",
+  "password_confirmation": "password123"
+}
+```
+
+#### Login
+```http
+POST /login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+Response:
+{
+  "success": true,
+  "token": "your_sanctum_token_here",
+  "user": { ... }
+}
+```
+
+#### Logout
+```http
+POST /logout
+Authorization: Bearer {token}
+```
+
+#### Forgot Password
+```http
+POST /forgot-password
+Content-Type: application/json
+
+{
+  "email": "john@example.com"
+}
+```
+
+#### Reset Password
+```http
+POST /reset-password
+Content-Type: application/json
+
+{
+  "token": "reset_token_from_email",
+  "email": "john@example.com",
+  "password": "newpassword123",
+  "password_confirmation": "newpassword123"
+}
+```
+
+### Category Endpoints
+
+#### Get All Categories (Public)
+```http
+GET /categories
+```
+
+#### Get Category Detail (Public)
+```http
+GET /categories/{category_id}
+```
+
+#### Create Category (Protected)
+```http
+POST /categories
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{
+  "name": "Programming",
+  "description": "Learn programming fundamentals"
+}
+```
+
+#### Update Category (Protected)
+```http
+PUT /categories/{category_id}
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{
+  "name": "Updated Category Name",
+  "description": "Updated description"
+}
+```
+
+#### Delete Category (Protected)
+```http
+DELETE /categories/{category_id}
+Authorization: Bearer {token}
+```
+
+#### Get User Progress in Category (Protected)
+```http
+GET /categories/{category_id}/progress
+Authorization: Bearer {token}
+```
+
+### Flashcard Endpoints
+
+#### Get All Flashcards (Protected)
+```http
+GET /flashcards
+Authorization: Bearer {token}
+```
+
+#### Get Flashcard Detail (Protected)
+```http
+GET /flashcards/{flashcard_id}
+Authorization: Bearer {token}
+```
+
+#### Get Flashcards by Category (Protected)
+```http
+GET /flashcards/{category_id}
+Authorization: Bearer {token}
+```
+
+#### Get Random Flashcards (Protected)
+```http
+GET /flashcards/random?limit=10
+Authorization: Bearer {token}
+```
+
+#### Create Flashcard (Protected)
+```http
+POST /flashcards
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{
+  "category_id": 1,
+  "question": "What is Laravel?",
+  "answer": "Laravel is a PHP web framework"
+}
+```
+
+#### Update Flashcard (Protected)
+```http
+PUT /flashcards/{flashcard_id}
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{
+  "question": "Updated question",
+  "answer": "Updated answer"
+}
+```
+
+#### Delete Flashcard (Protected)
+```http
+DELETE /flashcards/{flashcard_id}
+Authorization: Bearer {token}
+```
+
+#### Submit Flashcard Attempt (Protected)
+```http
+POST /flashcards/attempt/{flashcard_id}
+Authorization: Bearer {token}
+Content-Type: application/json
+
+{
+  "answer": "User's answer",
+  "is_correct": true
+}
+```
+
+#### Get User Attempts (Protected)
+```http
+GET /flashcards/attempt/{flashcard_id}
+Authorization: Bearer {token}
+```
+
+### User Endpoint
+
+#### Get Current User (Protected)
+```http
+GET /user
+Authorization: Bearer {token}
+```
+
+## 🧪 Testing
+
+### Run Tests
+
+```bash
+php artisan test
+```
+
+### Run Specific Test
+
+```bash
+php artisan test --filter TestName
+```
+
+## 📁 Struktur Folder
+
+```
+e_learning_laravel_api/
+├── app/
+│   ├── Http/
+│   │   └── Controllers/
+│   │       ├── Auth/
+│   │       │   ├── LoginController.php
+│   │       │   ├── RegisterController.php
+│   │       │   ├── LogoutController.php
+│   │       │   ├── ForgotPasswordController.php
+│   │       │   └── ResetPasswordController.php
+│   │       ├── Category/
+│   │       │   ├── GetCategoryController.php
+│   │       │   ├── CreateCategoryController.php
+│   │       │   ├── UpdateCategoryController.php
+│   │       │   └── DeleteCategoryController.php
+│   │       ├── Flashcard/
+│   │       │   ├── GetFlashcardController.php
+│   │       │   ├── CreateFlashcardController.php
+│   │       │   ├── UpdateFlashcardController.php
+│   │       │   └── DeleteFlashcardController.php
+│   │       └── Users/
+│   │           └── GetUserController.php
+│   └── Models/
+├── database/
+│   ├── migrations/
+│   └── seeders/
+├── routes/
+│   ├── api.php
+│   └── web.php
+├── tests/
+├── .env.example
+├── composer.json
+└── README.md
+```
+
+## 🔒 Security
+
+- Password di-hash menggunakan bcrypt
+- API dilindungi dengan Laravel Sanctum
+- CSRF protection untuk form
+- Rate limiting untuk API endpoints
+- Validasi input pada semua endpoints
+
+## 📝 Response Format
+
+### Success Response
+```json
+{
+  "success": true,
+  "message": "Operation successful",
+  "data": { ... }
+}
+```
+
+### Error Response
+```json
+{
+  "success": false,
+  "message": "Error message",
+  "errors": {
+    "field": ["Error detail"]
+  }
+}
+```
+
+### HTTP Status Codes
+- `200` - OK
+- `201` - Created
+- `400` - Bad Request
+- `401` - Unauthorized
+- `403` - Forbidden
+- `404` - Not Found
+- `422` - Validation Error
+- `500` - Server Error
+
+## 🤝 Kontribusi
+
+Kontribusi selalu diterima! Silakan fork repository ini dan buat pull request.
+
+1. Fork Project
+2. Create Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to Branch (`git push origin feature/AmazingFeature`)
+5. Open Pull Request
+
+## 📄 License
+
+Project ini menggunakan MIT License.
+
+## 👨‍💻 Author
+
+**Rosyid**
+- GitHub: [@rosyiddd666999](https://github.com/rosyiddd666999)
+
+## 📞 Support
+
+Jika ada pertanyaan atau issue, silakan buat issue di GitHub repository atau hubungi melalui email.
+
+---
+
+⭐️ Jangan lupa berikan star jika project ini membantu Anda!
