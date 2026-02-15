@@ -393,7 +393,6 @@ e_learning_laravel_api/
 - Password di-hash menggunakan bcrypt
 - API dilindungi dengan Laravel Sanctum
 - CSRF protection untuk form
-- Rate limiting untuk API endpoints
 - Validasi input pada semua endpoints
 
 ## 📝 Response Format
